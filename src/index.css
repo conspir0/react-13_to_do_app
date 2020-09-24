@@ -26,14 +26,14 @@ ul {
 .container {
   display: flex;
   flex-direction: column;
-  max-width: 500px;
+  max-width: 1000px;
   height: 100%;
   margin: 0 auto;
-  padding: 100px 0;
+  padding: 100px 10px;
 }
 
 .result-container {
-  max-width: 600px;
+  /* max-width: 600px; */
   min-height: 85px;
   /* max-height: 300px; */
   padding: 30px;
@@ -50,6 +50,12 @@ ul {
   /* letter-spacing: 1px; */
 }
 
+.result-container--form {
+  min-width: 500px;
+  max-width: 600px;
+  margin: 0 auto 10px;
+}
+
 .result-container--info .result-box {
   width: 150px;
   padding: 5px 20px;
@@ -58,13 +64,15 @@ ul {
 }
 
 .button-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .button-container .button,
 .button-container .result-box {
+  margin: 20px 0 0 10px;
   /* margin-right: 10px; */
 }
 
@@ -73,20 +81,27 @@ ul {
 }
 
 .button {
-  /* display: inline-block; */
+  display: block;
   /* width: fit-content; */
-  margin-bottom: 10px;
-  padding: 10px 20px;
+  margin: 50px auto 0;
+  padding: 10px 50px;
   border-radius: 5px;
-  border: 1px solid transparent;
-  background: #FFFFFF;
+  border: 1px solid rgb(72, 126, 176);
   color: rgb(72, 126, 176);
+  background: transparent;
   font-size: 15px;
   font-weight: 800;
   line-height: 15px;
   text-transform: uppercase;
   outline: none;
   cursor: pointer;
+  transition: .25s ease;
+}
+
+.button:hover {
+  color: #FFFFFF;
+  background: rgb(72, 126, 176);
+  transition: .25s ease;
 }
 
 .button:disabled {
@@ -95,11 +110,10 @@ ul {
 }
 
 .input-text {
-  margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid transparent;
-  background: #FFFFFF;
+  border: 1px solid rgb(72, 126, 176);
+  background: transparent;
   color: rgb(72, 126, 176);
   font-size: 15px;
   font-weight: 800;
@@ -107,17 +121,50 @@ ul {
   outline: none;
 }
 
-.label-checkbox {
+label {
+  display: block;
+  margin-bottom: 20px;
   font-size: 15px;
   line-height: 20px;
   color: rgb(72, 126, 176);
   cursor: pointer;
 }
 
+label {
+  text-transform: uppercase;
+}
+
+label input {
+  display: block;
+  width: 100%;
+}
+
+input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+  margin-right: 15px;
+}
+
 .label-checkbox input {
   margin-right: 15px;
   margin-bottom: 15px;
   cursor: pointer;
+}
+
+.task-container {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid rgb(72, 126, 176);
+  background: #FFFFFF;
+  color: rgb(72, 126, 176);
+  font-size: 15px;
+  line-height: 15px;
+}
+
+.task-container.important {
+  border: 1px solid #DC143C;
+  color: #DC143C;
 }
 
 .result-box {
