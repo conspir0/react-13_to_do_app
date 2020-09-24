@@ -13,6 +13,18 @@ class App extends Component {
     ]
   }
 
+  handleAddTask = (e, task) => {
+    e.preventDefault();
+
+    const randomId = Math.random().toString(36).substr(2, 9);
+    task.id = randomId;
+    task.active = true;
+
+    this.setState({
+      tasks: [...this.state.tasks, task]
+    })
+  }
+
   handleDeleteTask = (id) => {
     const taskList = this.state.tasks;
     const tasks = taskList.filter(task => task.id !== id)
@@ -21,34 +33,37 @@ class App extends Component {
   }
 
   handleDoneTask = (id) => {
-    const date = new Date();
-    const taskList = this.state.tasks;
-    const tasks = taskList.map(task => {
-      if (task.id === id) {
-        task.active = false;
-        task.finishDate = date.toDateString();
-      }
+    const date = new Date(),
+      taskList = this.state.tasks,
+      tasks = taskList.map(task => {
+        if (task.id === id) {
+          task.active = false;
+          task.finishDate = date.toISOString().substring(0, 10);
+        }
 
-      return task;
-    });
+        return task;
+      });
 
     this.setState({ tasks })
   }
 
   render() {
-    const { tasks } = this.state;
+    const { handleAddTask, handleDoneTask, handleDeleteTask } = this,
+      { tasks } = this.state;
 
     return (
       <div className="container">
-        <ContainerForm />
+        <ContainerForm
+          addTask={handleAddTask}
+        />
         <ContainerListToDo
           tasks={tasks}
-          doneTask={this.handleDoneTask}
-          deleteTask={this.handleDeleteTask}
+          doneTask={handleDoneTask}
+          deleteTask={handleDeleteTask}
         />
         <ContainerListDone
           tasks={tasks}
-          deleteTask={this.handleDeleteTask}
+          deleteTask={handleDeleteTask}
         />
       </div>
     );

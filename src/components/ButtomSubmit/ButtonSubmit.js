@@ -1,9 +1,11 @@
 import React from 'react';
 
-const ButtonSubmit = () => {
+const ButtonSubmit = ({ addTask, task }) => {
+
   return (
     <button
       className="button"
+      onClick={(e) => addTask(e, task)}
     >
       Add
     </button>
