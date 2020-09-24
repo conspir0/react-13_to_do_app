@@ -3,7 +3,7 @@ import React from 'react';
 const TaskActive = ({ id, title, text, date, important, doneTask, deleteTask }) => {
   return (
     <div className={`task-container ${important && `important`}`}>
-      <p>Estimation date: {date}</p>
+      <p>Estimate date: {date}</p>
       <h2>{title}</h2>
       <p>{text}</p>
       <div className="button-container">

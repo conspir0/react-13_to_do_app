@@ -6,23 +6,28 @@ import './App.css';
 
 class App extends Component {
   state = {
-    tasks: [
-      { id: 1, title: 'Title 1', text: 'lolo', date: '2018-01-10', finishDate: '', important: true, active: true },
-      { id: 2, title: 'Title 2', text: 'lolo', date: '2019-02-11', finishDate: '', important: true, active: true },
-      { id: 3, title: 'Title 3', text: 'lolo', date: '2020-03-12', finishDate: '', important: false, active: true }
-    ]
+    tasks: []
   }
 
-  handleAddTask = (e, task) => {
-    e.preventDefault();
+  randomId = () => {
+    return Math.random().toString(36).substr(2, 9);
+  }
 
-    const randomId = Math.random().toString(36).substr(2, 9);
-    task.id = randomId;
-    task.active = true;
+  handleAddTask = (task) => {
+    const { title, text, date, important, active } = task,
+      newTask = {
+        id: this.randomId(),
+        title,
+        text,
+        date,
+        important,
+        active,
+      }
 
     this.setState({
-      tasks: [...this.state.tasks, task]
+      tasks: [...this.state.tasks, newTask]
     })
+    return true;
   }
 
   handleDeleteTask = (id) => {

@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ButtonSubmit = ({ addTask, task }) => {
-
   return (
     <button
       className="button"

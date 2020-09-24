@@ -2,7 +2,7 @@ import React from 'react';
 import TaskDone from '../TaskDone/TaskDone';
 
 const ContainerListDone = ({ tasks, deleteTask }) => {
-  const doneTasks = tasks.filter(task => task.active !== true);
+  const doneTasks = tasks.filter(task => task.active !== true).sort((a, b) => a.finishDate - b.finishDate);
   const taskList = doneTasks.map(task => {
     return (
       <TaskDone

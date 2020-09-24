@@ -8,6 +8,7 @@ class ContainerForm extends Component {
     text: '',
     date: '',
     important: false,
+    active: true,
   }
 
   handleInput = (e) => {
@@ -24,8 +25,20 @@ class ContainerForm extends Component {
     }
   }
 
+  handleClick = (e) => {
+    e.preventDefault();
+    const { title, text, date } = this.state
+
+    if (title && text && date) {
+      const task = this.props.addTask(this.state);
+      task && this.setState({ title: '', text: '', date: '', important: false })
+    } else {
+      alert('Wrong validation!')
+    }
+  }
+
   render() {
-    const { handleInput } = this;
+    const { handleInput, handleClick } = this;
     const { title, text, date, important } = this.state;
 
     return (
@@ -63,7 +76,7 @@ class ContainerForm extends Component {
             important={important}
             inputEvent={handleInput}
           />
-          <ButtonSubmit addTask={this.props.addTask} task={this.state} />
+          <ButtonSubmit addTask={handleClick} task={this.state} />
         </form>
       </div>
     );
